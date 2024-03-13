@@ -44,6 +44,9 @@ class Command(BaseCommand):
                 title=fake.sentence(),
                 content="\n".join(fake.paragraphs()),
                 author=author,
+                created_at=fake.date_time_between(
+                    start_date="-10y", end_date="now", tzinfo=None
+                ),  # Generate random datetime
             )
             post.save()  # save to get a post instance to add categories
             post.categories.add(*fake.random_elements(elements=categories, unique=True))
