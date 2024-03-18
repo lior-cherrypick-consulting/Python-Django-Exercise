@@ -23,8 +23,8 @@ class Command(BaseCommand):
             Category(name="Lifestyle"),
             Category(name="Entertainment"),
             Category(name="Travel"),
-            Category(name="Food & Drink"),
-            Category(name="Health & Wellness"),
+            Category(name="Culinary"),
+            Category(name="Wellness"),
             Category(name="Business"),
             Category(name="Finance"),
             Category(name="Education"),
@@ -37,20 +37,19 @@ class Command(BaseCommand):
         categories = list(Category.objects.all())
 
         # Create 10,000 blog posts
-        posts = []
-        for _ in range(10000):
-            author = fake.random_element(authors)
-            post = Post(
+        posts = [
+            Post(
                 title=fake.sentence(),
                 content="\n".join(fake.paragraphs()),
-                author=author,
-                created_at=fake.date_time_between(
-                    start_date="-10y", end_date="now", tzinfo=None
-                ),  # Generate random datetime
+                author=fake.random_element(authors),
+                category=fake.random_element(
+                    categories
+                ),  # Assign a category to each post
+                created_at=fake.date_between(start_date="-10y", end_date="today"),
             )
-            post.save()  # save to get a post instance to add categories
-            post.categories.add(*fake.random_elements(elements=categories, unique=True))
-            posts.append(post)
+            for _ in range(10000)
+        ]
+        Post.objects.bulk_create(posts)
 
         self.stdout.write(
             self.style.SUCCESS(f"Successfully populated the database with fake data")
