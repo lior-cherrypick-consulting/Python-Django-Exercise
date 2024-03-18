@@ -7,7 +7,7 @@ class Post(models.Model):
     content = models.TextField()
     author = models.ForeignKey("Author", on_delete=models.CASCADE)
     category = models.ForeignKey("Category", on_delete=models.CASCADE)
-    created_at = models.DateField(auto_now_add=True)
+    created_at = models.DateField()
 
     def __str__(self):
         return self.title

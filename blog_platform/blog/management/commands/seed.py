@@ -47,7 +47,7 @@ class Command(BaseCommand):
                 ),  # Assign a category to each post
                 created_at=fake.date_between(start_date="-10y", end_date="today"),
             )
-            for _ in range(10000)
+            for _ in range(10_000)
         ]
         Post.objects.bulk_create(posts)
 
