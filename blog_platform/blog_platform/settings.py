@@ -39,6 +39,9 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "blog",
+    
+    "rest_framework",
+    "django_filters",
 ]
 
 MIDDLEWARE = [
@@ -77,13 +80,15 @@ WSGI_APPLICATION = "blog_platform.wsgi.application"
 
 # Database
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('DB_NAME', 'default_db_name'),
-        'USER': os.environ.get('DB_USER', 'default_db_user'),
-        'PASSWORD': os.environ.get('DB_PASSWORD', 'default_db_password'),
-        'HOST': os.environ.get('DB_HOST', 'localhost'),  # Use 'db' if running in Docker, 'localhost' if locally
-        'PORT': os.environ.get('DB_PORT', '5432'),
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": os.environ.get("DB_NAME", "default_db_name"),
+        "USER": os.environ.get("DB_USER", "default_db_user"),
+        "PASSWORD": os.environ.get("DB_PASSWORD", "default_db_password"),
+        "HOST": os.environ.get(
+            "DB_HOST", "localhost"
+        ),  # Use 'db' if running in Docker, 'localhost' if locally
+        "PORT": os.environ.get("DB_PORT", "5432"),
     }
 }
 
@@ -128,3 +133,7 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+REST_FRAMEWORK = {
+    "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"]
+}
