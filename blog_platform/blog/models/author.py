@@ -5,4 +5,4 @@ class Author(models.Model):
     last_name = models.CharField(max_length=64)
 
     def __str__(self):
-        return self.name
+        return self.first_name + " " + self.last_name
