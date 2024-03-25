@@ -14,22 +14,6 @@ jobs:
         DB_NAME: ${{ secrets.DB_NAME }}
         DB_HOST: ${{ vars.DB_HOST }}
         DB_PORT: ${{ vars.DB_PORT }}
-    services:
-      postgres:
-        image: postgres:latest
-        env:
-          POSTGRES_DB: ${{ env.DB_NAME }}
-          POSTGRES_USER: ${{ env.DB_USER }}
-          POSTGRES_PASSWORD: ${{ env.DB_PASSWORD }}
-        ports:
-            # Ports is not exposed to the "env" context
-          - ${{ vars.DB_PORT }}:5432
-        # Setup service container to be ready before proceeding.
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
 
     steps:
     - uses: actions/checkout@v2
