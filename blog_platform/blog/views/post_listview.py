@@ -8,7 +8,7 @@ from blog.filters import PostFilter
 class PostListViewPagination(PageNumberPagination):
     page_size = 10
 
-class PostListView(generics.ListAPIView):
+class PostListView(generics.ListCreateAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
     filter_backends = [DjangoFilterBackend]

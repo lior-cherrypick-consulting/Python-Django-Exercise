@@ -5,7 +5,7 @@ from blog.serializers import AuthorSerializer
 from blog.filters import AuthorFilter
 
 
-class AuthorListView(generics.ListAPIView):
+class AuthorListView(generics.ListCreateAPIView):
     queryset = Author.objects.all()
     serializer_class = AuthorSerializer
     filter_backends = [DjangoFilterBackend]
