@@ -12,4 +12,4 @@ When the application is running, the REST endpoints can be accessed at `http://l
 
 ## Testing ##
 To run tests please run:
-`docker compose exec web python manage.py test`
+`docker-compose exec web python manage.py test`
