@@ -26,6 +26,7 @@ jobs:
 
   build:
     name: Build & Deploy
+    needs: test 
     runs-on: ubuntu-latest
     environment:
       name: staging
