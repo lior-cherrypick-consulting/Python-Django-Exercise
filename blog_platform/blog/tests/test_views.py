@@ -62,22 +62,22 @@ class PostListViewTest(APITestCase):
         url = reverse('post-list') + '?title=Sample Post'
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(len(response.data), 1)
+        self.assertEqual(len(response.data["results"]), 1)
         
     def test_post_filter_author(self):
         url = reverse('post-list') + '?author=Joe'
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(len(response.data), 1)
+        self.assertEqual(len(response.data["results"]), 1)
         
     def test_post_filter_category(self):
         url = reverse('post-list') + '?category=Technology'
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(len(response.data), 1)
+        self.assertEqual(len(response.data["results"]), 1)
         
     def test_post_filter_created_at(self):
         url = reverse('post-list') + f'?date={date.today()}'
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(len(response.data), 1)
+        self.assertEqual(len(response.data["results"]), 1)
