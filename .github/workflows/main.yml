@@ -42,7 +42,7 @@ jobs:
           credentials_json: "${{ secrets.GCP_CREDENTIALS }}"
 
       - name: Configure docker for pushing
-        run: gcloud auth congifure-docker ${{ vars.REGION }}-docker.pkg.dev
+        run: gcloud auth configure-docker ${{ vars.REGION }}-docker.pkg.dev
 
       - name: Build the Docker image
         run: |
