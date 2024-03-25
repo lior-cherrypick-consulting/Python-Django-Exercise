@@ -3,3 +3,4 @@ djangorestframework
 django-filter
 Faker
 psycopg2-binary 
+drf-spectacular
