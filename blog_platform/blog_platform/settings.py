@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 import os
+import sys
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -79,18 +80,24 @@ WSGI_APPLICATION = "blog_platform.wsgi.application"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 # Database
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.environ.get("DB_NAME", "default_db_name"),
-        "USER": os.environ.get("DB_USER", "default_db_user"),
-        "PASSWORD": os.environ.get("DB_PASSWORD", "default_db_password"),
-        "HOST": os.environ.get(
-            "DB_HOST", "localhost"
-        ),  # Use 'db' if running in Docker, 'localhost' if locally
-        "PORT": os.environ.get("DB_PORT", "5432"),
+if 'test' in sys.argv:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": ":memory:",
+        }
     }
-}
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": os.environ.get("DB_NAME", "default_db_name"),
+            "USER": os.environ.get("DB_USER", "default_db_user"),
+            "PASSWORD": os.environ.get("DB_PASSWORD", "default_db_password"),
+            "HOST": os.environ.get("DB_HOST", "localhost"),  # Adjust as necessary
+            "PORT": os.environ.get("DB_PORT", "5432"),
+        }
+    }
 
 
 # Password validation
