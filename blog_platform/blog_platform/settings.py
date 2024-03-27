@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 import os
 import sys
 from pathlib import Path
+import logging
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -30,7 +31,7 @@ SECRET_KEY = "django-insecure--)_o$3w975^hc09iofq(**4pz#pm1())ymh@a)61^^8+w9ocyb
 DEBUG = True
 
 ALLOWED_HOSTS = os.getenv("ALLOWED_HOST", "localhost,127.0.0.1").split(",")
-
+logging.info(f"ALLOWED_HOSTS: {ALLOWED_HOSTS}")
 
 # Application definition
 
