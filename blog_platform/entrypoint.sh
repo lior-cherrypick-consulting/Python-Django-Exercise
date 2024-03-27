@@ -38,7 +38,7 @@ python manage.py makemigrations blog
 
 # Apply database migrations
 echo "Applying database migrations..."
-python manage.py migrate blog
+python manage.py migrate
 
 # Seed the database
 echo "Seeding the database..."
