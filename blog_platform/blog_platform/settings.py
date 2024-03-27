@@ -80,21 +80,40 @@ WSGI_APPLICATION = "blog_platform.wsgi.application"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 # Database
-if 'test' in sys.argv:
+if "test" in sys.argv:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
             "NAME": ":memory:",
         }
     }
-else:
+
+
+# Environment context (development or staging)
+ENVIRONMENT = os.getenv("ENVIRONMENT", "development")
+
+if ENVIRONMENT == "staging":
+    # Configuration for Cloud Run
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.postgresql",
             "NAME": os.environ.get("DB_NAME", "default_db_name"),
             "USER": os.environ.get("DB_USER", "default_db_user"),
             "PASSWORD": os.environ.get("DB_PASSWORD", "default_db_password"),
-            "HOST": os.environ.get("DB_HOST", "localhost"),  # Adjust as necessary
+            "HOST": "/cloudsql/"
+            + os.environ.get("INSTANCE_CONNECTION_NAME", "my:cloudsql:instance"),
+            "PORT": "",
+        }
+    }
+else:
+    # Default configuration for development
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": os.environ.get("DB_NAME", "default_db_name"),
+            "USER": os.environ.get("DB_USER", "default_db_user"),
+            "PASSWORD": os.environ.get("DB_PASSWORD", "default_db_password"),
+            "HOST": os.environ.get("DB_HOST", "localhost"),
             "PORT": os.environ.get("DB_PORT", "5432"),
         }
     }
