@@ -79,7 +79,9 @@ WSGI_APPLICATION = "blog_platform.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-# Database
+# Environment context (development or staging)
+ENVIRONMENT = os.getenv("ENVIRONMENT", "development")
+
 if "test" in sys.argv:
     DATABASES = {
         "default": {
@@ -87,12 +89,7 @@ if "test" in sys.argv:
             "NAME": ":memory:",
         }
     }
-
-
-# Environment context (development or staging)
-ENVIRONMENT = os.getenv("ENVIRONMENT", "development")
-
-if ENVIRONMENT == "staging":
+elif ENVIRONMENT == "staging":
     # Configuration for Cloud Run
     DATABASES = {
         "default": {
