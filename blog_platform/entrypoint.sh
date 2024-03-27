@@ -26,13 +26,19 @@ if [ "$ENVIRONMENT" == "development" ]; then
     done
 fi
 
+# Drop the Django tables from the DB
+# so we would ensure clean state
+# for each time this script runs (for demo purposes)
+echo "Dropping Django migrations table..."
+python manage.py reset_db.py
+
 # Create migrations for the app
 echo "Creating database migrations..."
-python manage.py makemigrations --verbosity 3
+python manage.py makemigrations 
 
 # Apply database migrations
 echo "Applying database migrations..."
-python manage.py migrate --verbosity 3
+python manage.py migrate 
 
 # Seed the database
 echo "Seeding the database..."
