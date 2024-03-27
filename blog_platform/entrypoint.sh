@@ -38,6 +38,10 @@ python manage.py makemigrations blog
 
 # Apply database migrations
 echo "Applying database migrations..."
+python manage.py migrate blog
+
+# Apply other Django migrations
+echo "Applying database migrations..."
 python manage.py migrate
 
 # Seed the database
