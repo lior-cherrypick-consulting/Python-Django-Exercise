@@ -4,3 +4,4 @@ django-filter
 Faker
 psycopg2-binary 
 drf-spectacular
+django-cors-headers
