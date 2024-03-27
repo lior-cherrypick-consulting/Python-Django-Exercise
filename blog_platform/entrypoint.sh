@@ -30,7 +30,7 @@ fi
 # so we would ensure clean state
 # for each time this script runs (for demo purposes)
 echo "Dropping Django migrations table..."
-python manage.py reset_db.py
+python manage.py reset_db
 
 # Create migrations for the app
 echo "Creating database migrations..."
