@@ -25,6 +25,7 @@ services:
       DB_HOST: ${DB_HOST}
       DB_PORT: 5432
       PORT: ${PORT}
+      ALLOWED_HOST: ${ALLOWED_HOST}
     depends_on:
       - db
 

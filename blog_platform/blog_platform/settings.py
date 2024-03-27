@@ -17,6 +17,8 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Environment context (development or staging)
+ENVIRONMENT = os.getenv("ENVIRONMENT", "development")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
@@ -25,9 +27,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure--)_o$3w975^hc09iofq(**4pz#pm1())ymh@a)61^^8+w9ocyb"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = True if ENVIRONMENT == "development" else False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOST", "localhost,127.0.0.1").split(",")
 
 
 # Application definition
@@ -79,8 +81,6 @@ WSGI_APPLICATION = "blog_platform.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-# Environment context (development or staging)
-ENVIRONMENT = os.getenv("ENVIRONMENT", "development")
 
 if "test" in sys.argv:
     DATABASES = {
