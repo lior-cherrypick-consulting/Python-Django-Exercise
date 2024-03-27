@@ -34,11 +34,11 @@ python manage.py reset_db
 
 # Create migrations for the app
 echo "Creating database migrations..."
-python manage.py makemigrations 
+python manage.py makemigrations blog
 
 # Apply database migrations
 echo "Applying database migrations..."
-python manage.py migrate 
+python manage.py migrate blog
 
 # Seed the database
 echo "Seeding the database..."
