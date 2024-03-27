@@ -9,6 +9,14 @@
 
 # Note: Make this script executable by running: chmod +x entrypoint.sh
 
+# Check if running tests
+if [ "$RUN_TESTS" == "1" ]; then
+  echo "Running tests, skipping database checks..."
+  # Execute the passed command arguments (e.g., Django's test runner)
+  exec "$@"
+  exit 0
+fi
+
 # Wait for PostgreSQL to become available
 until pg_isready -h db -p 5432 -U "${DB_USER}"; do
   echo "Waiting for PostgreSQL to start..."
