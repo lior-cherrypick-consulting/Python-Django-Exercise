@@ -12,21 +12,21 @@ jobs:
       DB_USER: user
       DB_PASSWORD: password
       DB_NAME: mock_db
-      DB_HOST: postgres
+      DB_HOST: 127.0.0.1
       DB_PORT: 5432
 
     steps:
       - uses: actions/checkout@v2
 
       - name: Build the Docker image
-        run: docker-compose build
+        run: docker build -t web-app-test ./blog_platform
 
       - name: Run tests
-        run: docker-compose run web python manage.py test
+        run: docker run --name django-test-container web-app-test python manage.py test
 
   build:
     name: Build & Deploy
-    needs: test 
+    needs: test
     runs-on: ubuntu-latest
     environment:
       name: staging
