@@ -28,11 +28,11 @@ fi
 
 # Create migrations for the app
 echo "Creating database migrations..."
-python manage.py makemigrations
+python manage.py makemigrations --verbosity 3
 
 # Apply database migrations
 echo "Applying database migrations..."
-python manage.py migrate
+python manage.py migrate --verbosity 3
 
 # Seed the database
 echo "Seeding the database..."
