@@ -61,6 +61,6 @@ jobs:
             --region ${{ vars.REGION }} \
             --platform managed \
             --allow-unauthenticated \
-            --set-env-vars=DB_NAME=${{ secrets.DB_NAME }},DB_USER=${{ secrets.DB_USER }},DB_PASSWORD=${{ secrets.DB_PASSWORD }},INSTANCE_CONNECTION_NAME=${{ vars.INSTANCE_CONNECTION_NAME }},ENVIRONMENT=${{ vars.ENVIRONMENT }}
+            --set-env-vars=DB_NAME=${{ secrets.DB_NAME }},DB_USER=${{ secrets.DB_USER }},DB_PASSWORD=${{ secrets.DB_PASSWORD }},INSTANCE_CONNECTION_NAME=${{ vars.INSTANCE_CONNECTION_NAME }},ENVIRONMENT=${{ vars.ENVIRONMENT }} \
             --add-cloudsql-instances=${{ vars.INSTANCE_CONNECTION_NAME }}
             
