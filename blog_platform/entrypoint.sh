@@ -18,10 +18,13 @@ if [ "$RUN_TESTS" == "1" ]; then
 fi
 
 # Wait for PostgreSQL to become available
-until pg_isready -h db -p 5432 -U "${DB_USER}"; do
-  echo "Waiting for PostgreSQL to start..."
-  sleep 1
-done
+if [ "$ENVIRONMENT" == "development" ]; then
+    # Wait for PostgreSQL to become available
+    until pg_isready -h db -p 5432 -U "${DB_USER}"; do
+      echo "Waiting for PostgreSQL to start..."
+      sleep 1
+    done
+fi
 
 # Create migrations for the app
 echo "Creating database migrations..."
