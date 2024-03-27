@@ -40,4 +40,4 @@ python manage.py seed
 
 # Start the main process: Django's runserver
 echo "Starting Django development server..."
-exec "$@"
+exec python manage.py runserver 0.0.0.0:$PORT
